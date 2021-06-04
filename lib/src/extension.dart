@@ -103,7 +103,7 @@ abstract class ExtensionValue {
           return AuthorityInformationAccess.fromAsn1(obj as ASN1Sequence);
       }
     }
-    if (id.parent == provisionerId) {
+    if (id == provisionerId) {
       return StepProvisioner(obj);
     }
 
