@@ -62,6 +62,8 @@ class Extension {
 abstract class ExtensionValue {
   static const ceId = ObjectIdentifier([2, 5, 29]);
   static const peId = ObjectIdentifier([1, 3, 6, 1, 5, 5, 7, 1]);
+  static const provisionerId = ObjectIdentifier(
+      [1, 3, 6, 1, 4, 1, 37476, 9000, 64, 1]);
 
   const ExtensionValue();
 
@@ -101,6 +103,10 @@ abstract class ExtensionValue {
           return AuthorityInformationAccess.fromAsn1(obj as ASN1Sequence);
       }
     }
+    if (id.parent == provisionerId) {
+      return StepProvisioner(obj);
+    }
+
     throw UnimplementedError(
         'Cannot handle $id (${id.parent} ${id.nodes.last})');
   }
@@ -681,5 +687,15 @@ class GeneralNames extends ExtensionValue {
     return GeneralNames(sequence.elements.map((n) {
       return GeneralName.fromAsn1(n);
     }).toList());
+  }
+}
+
+class StepProvisioner extends ExtensionValue {
+  final ASN1Object contents;
+
+  StepProvisioner(this.contents);
+
+  factory StepProvisioner.fromAsn1(ASN1Object obj) {
+    return StepProvisioner(obj);
   }
 }
