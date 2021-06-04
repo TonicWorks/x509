@@ -222,6 +222,24 @@ class ObjectIdentifier {
           null: 'dod',
           1: {
             null: 'internet',
+            4: {
+              null: 'private',
+              1: {
+                null: 'enterprise',
+                37476: {
+                  null: '37476',
+                  9000: {
+                    null: 'freeoid',
+                    64: {
+                      null: '64',
+                      1: {
+                        null: 'step-provisioner'
+                      }
+                    }
+                  }
+                }
+              }
+            },
             5: {
               null: 'security',
               5: {
