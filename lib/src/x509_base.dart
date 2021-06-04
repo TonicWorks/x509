@@ -14,6 +14,7 @@ import 'package:crypto_keys/crypto_keys.dart';
 export 'package:crypto_keys/crypto_keys.dart';
 
 import 'util.dart';
+import 'package:tuple/tuple.dart';
 
 part 'certificate.dart';
 part 'extension.dart';
@@ -270,6 +271,6 @@ Iterable parsePem(String pem) sync* {
 
     var b = lines.sublist(startI, i).join('');
     var bytes = base64.decode(b);
-    yield _parseDer(bytes, type);
+    yield Tuple2<Uint8List, Object>(bytes, _parseDer(bytes, type));
   }
 }
